@@ -6,12 +6,22 @@ import "../assets/scss/main.scss"
 
 import { Route, Switch, BrowserRouter } from "react-router-dom"
 
+import Index from "./Index"
+import PetTypeIndex from "./PetTypeIndex"
+
 const App = props => {
   useEffect(() => {
     $(document).foundation()
   }, [])
 
-  return <div className="callout primary">Replace this div with your Router.</div>
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Index} />
+        <Route exact path="/pets" component={PetTypeIndex} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default hot(App)
