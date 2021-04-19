@@ -23,7 +23,7 @@ const PetTypeIndex = (props) => {
             }
         }
       //  fetchPetTypes()
-      setPetTypes([{id:1, type: "whales", img_url:"www.pizza.com", description: "optional string"}])
+      setPetTypes([{id:1, type: "whales", img_url:"www.pizza.com", description: "optional string"}, {id:2, type: "dogs", img_url:"www.pizza.com", description: "optional string"}])
     }, [])
 
     const petTypeTiles = petTypes.map(petType => {
@@ -36,8 +36,10 @@ const PetTypeIndex = (props) => {
     })
     
     return(
-        <h1> Welcome to our Pet Adoption Page</h1>
-        <ul>{petTypeTiles}</ul>
+        <div>
+            <h1> Welcome to our Pet Adoption Page</h1>
+            {petTypeTiles}
+        </div>
     )
 }
 
