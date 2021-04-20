@@ -1,7 +1,4 @@
 import pg from "pg"
-// import path from "path"
-// import LineReader from "line-reader"
-// import { fileURLToPath } from "url"
 
 const pool = new pg.Pool({
   connectionString: "postgres://postgres:password@localhost:5432/new_family_member_development" })
@@ -12,12 +9,12 @@ class Seeder {
      try {
        const petTypes = [
          {
-           type: "Cats",
+           type: "cats",
            img_url: "https://filmdaily.co/wp-content/uploads/2020/04/cute-cat-videos-lede-1300x882.jpg",
            description: "You don't own them, they own you instead"
          },
          {
-           type: "Dogs",
+           type: "dogs",
            img_url: "http://cdn.akc.org/content/article-body-image/cavkingcharlessmalldogs.jpg",
            description: "You truly own them and they serve you the best they can"
          }
@@ -29,9 +26,9 @@ class Seeder {
          await pool.query(queryString, [petType.type, petType.img_url, petType.description])
        }
 
-       const catData = await pool.query("SELECT * FROM pet_types WHERE type = 'Cats';")
+       const catData = await pool.query("SELECT * FROM pet_types WHERE type = 'cats';")
        const cat = catData.rows[0]
-       const dogData = await pool.query("SELECT * FROM pet_types WHERE type = 'Dogs';")
+       const dogData = await pool.query("SELECT * FROM pet_types WHERE type = 'dogs';")
        const dog = dogData.rows[0]
 
        const pets = [

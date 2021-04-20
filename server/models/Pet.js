@@ -13,39 +13,6 @@ class Pet {
         this.petTypeId = petTypeId || pet_type_id
     }
 
-    // static async findAll() {
-    //     try {
-    //       const result = await pool.query("SELECT * FROM adoptable_pets;")
-    //       const petsData = result.rows
-    //       const pets = petsData.map(pet => new this(pet))
-
-    //       return pets
-
-    //     } catch (error) {
-    //         console.log(error)
-    //         throw (error)
-    //     }
-    // }
-
-    // async petType() {
-    //     const petTypeFile = await import("./PetType.js")
-    //     const PetType = petTypeFile.default
-
-    //     try {
-    //       const query = `SELECT * FROM pet_types WHERE type = $1;`
-    //       const result = await pool.query(query, [this.petTypeId])
-
-    //       const relatedPetTypeData = result.rows[0]
-    //       const relatedPetType = new PetType(relatedPetTypeData)
-
-    //       return relatedPetType
-
-    //     } catch (error) {
-    //         console.log(error)
-    //         throw (error)
-    //     }
-    // }
-
 }
 
 export default Pet
