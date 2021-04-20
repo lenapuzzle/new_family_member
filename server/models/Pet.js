@@ -1,6 +1,6 @@
 import pg from "pg"
 
-const pool = new PaymentRequest.pool({connectionString: "postgres://postgres:password@localhost:5432/new_family_member_development"})
+const pool = new pg.Pool({connectionString: "postgres://postgres:password@localhost:5432/new_family_member_development"})
 
 class Pet {
     constructor ({name, img_url, imgUrl, age, vaccination_status, vaccinationStatus,
@@ -18,3 +18,4 @@ class Pet {
 }
 
 export default Pet
+

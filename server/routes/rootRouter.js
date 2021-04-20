@@ -1,6 +1,6 @@
 import express from "express"
 import clientRouter from "./clientRouter.js"
-import petTypesRouter from "./api/v1/petTypesRouter"
+import petTypesRouter from "./api/v1/petTypesRouter.js"
 
 const rootRouter = new express.Router()
 
