@@ -9,6 +9,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom"
 import Index from "./Index"
 import PetTypeIndex from "./PetTypeIndex"
 import PetIndex from "./PetIndex"
+import PetShowPage from "./PetShowPage"
 
 const App = props => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const App = props => {
         <Route exact path="/" component={Index} />
         <Route exact path="/pets" component={PetTypeIndex} />
         <Route exact path="/pets/:type" component={PetIndex} />
+        <Route exact path="/pets/:type/:id" component={PetShowPage} />
       </Switch>
     </BrowserRouter>
   )

@@ -1,6 +1,7 @@
 import express from "express"
 
 import PetType from '../../../models/PetType.js'
+import Pet from '../../../models/Pet.js'
 
 const petTypesRouter = new express.Router()
 
@@ -26,17 +27,19 @@ petTypesRouter.get("/:type", async (req, res) => {
     }
 })
 
-// petTypesRouter.get("/:petType", async (req, res) => {
+petTypesRouter.get("/:type/:id", async (req, res) => {
 
-//     try {
-//         const type = PetType.findByType(req.params.petType)
-//         type.pets = await type.pets()
-//         res.status(200).json({ type: type })
+    try {
+        const type = req.params.type
+        const petId = req.params.id
 
-//     } catch (error) {
-//         console.log(error)
-//         res.status(500).json({ error: error })
-//     }
-// })
+        const pet = await Pet.findById(petId)
+        res.status(200).json({pet: pet})
+
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({error: error})
+    }
+})
 
 export default petTypesRouter

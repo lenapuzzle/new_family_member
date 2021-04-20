@@ -43,45 +43,5 @@ class PetType {
             throw (error)
         }
     }
-
-    static async findById(Id) {
-    }
-
-    // static async findByType(type) {
-
-    //     try {
-    //         const query = "SELECT * FROM pet_types WHERE type = $1;"
-    //         const result = await pool.query(query, [type])
-
-    //         const typesData = result.rows[0]
-    //         const petType = new this(typesData)
-
-    //         return petType
-
-    //     } catch (error) {
-    //         console.log(error)
-    //         throw (error)
-    //     }
-    // }
-
-    // async pets() {
-    //     const petFile = await import("./Pet.js")
-    //     const Pet = petFile.default
-
-    //     try {
-    //       const query = `SELECT * FROM adoptable_pets WHERE pet_type_id = $1;`
-    //       const result = await pool.query(query, [this.id])
-
-    //       const relatedPetsData = result.rows
-    //       const relatedPets = relatedPetsData.map(pet => new Pet(pet))
-
-    //       return relatedPets
-
-    //     } catch (error) {
-    //         console.log(error)
-    //         throw (error)
-    //     }
-    // }
-
 }
 export default PetType
