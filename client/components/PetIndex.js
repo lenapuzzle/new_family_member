@@ -25,14 +25,13 @@ const PetIndex = (props) => {
                 console.error(`Error in fetch: ${err.message}`)                
             }
         }
-      //  fetchPets()
-      setPets([{id: 1, name: 'Sammy'}])
+        fetchPets()
     }, [])
 
     const petTiles = pets.map(pet => {
         return(
             <PetTile
-                key={petType.id}
+                key={pet.id}
                 pet={pet}
             />
           )
@@ -40,7 +39,7 @@ const PetIndex = (props) => {
     
     return(
         <div>
-            <h1>Check Out Our Adorable {type}s</h1>
+            <h1>Check Out Our Adorable {type}</h1>
             {petTiles}
         </div>
     )
