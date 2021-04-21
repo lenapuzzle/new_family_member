@@ -14,15 +14,4 @@ petTypesRouter.get("/", async (req, res) => {
   }
 })
 
-petTypesRouter.get("/:type", async (req, res) => {
-  try {
-    const type = req.params.petType
-    const pets = await PetType.findPetsByType(type)
-    res.status(200).json({ pets: pets })
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: error })
-  }
-})
-
 export default petTypesRouter
