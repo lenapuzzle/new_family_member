@@ -47,6 +47,11 @@ class PetType {
     static async findById(Id) {
     }
 
+    static async getAvailablePets() {
+        let query = "SELECT * FROM adoptable_pets WHERE 
+
+    }
+
     // static async findByType(type) {
 
     //     try {
