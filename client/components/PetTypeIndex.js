@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import PetTypeTile from './PetTypeTile'
 
 const PetTypeIndex = (props) => {
-  const[petTypes, setPetTypes] = useState([])
+  const [petTypes, setPetTypes] = useState([])
 
   useEffect(() => {
     const fetchPetTypes = async () => {
@@ -25,15 +25,15 @@ const PetTypeIndex = (props) => {
   }, [])
 
   const petTypeTiles = petTypes.map(petType => {
-    return(
+    return (
       <PetTypeTile
         key={petType.id}
         type={petType}
       />
-      )
+    )
   })
-  
-  return(
+
+  return (
     <div>
       <h1> Welcome to our Pet Adoption Page</h1>
       {petTypeTiles}

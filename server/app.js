@@ -31,7 +31,6 @@ app.use(express.static(path.join(__dirname, "../client/public")))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// Express routes
 app.use(rootRouter)
 
 app.listen(3000, "0.0.0.0", () => {
