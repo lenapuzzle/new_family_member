@@ -3,9 +3,10 @@ import pg from "pg"
 const pool = new pg.Pool({connectionString: "postgres://postgres:password@localhost:5432/new_family_member_development"})
 
 class Pet {
-  constructor ({name, img_url, imgUrl, age, vaccination_status, vaccinationStatus,
+  constructor ({id,name, img_url, imgUrl, age, vaccination_status, vaccinationStatus,
           adoption_story, adoptionStory, available_for_adoption, 
           availableForAdoption, pet_type_id, petTypeId}){
+    this.id = id
     this.name = name
     this.imgUrl = imgUrl || img_url
     this.age = age 
