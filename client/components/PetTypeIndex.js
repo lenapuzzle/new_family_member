@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom"
 
 import PetTypeTile from './PetTypeTile'
@@ -13,13 +13,12 @@ const PetTypeIndex = (props) => {
         if (!response.ok) {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
-          throw (error)
+          throw(error)
         }
         const petTypeData = await response.json()
-        // if the team does not nest the data we can remove the .petTypes reference
         setPetTypes(petTypeData.petTypes)
-      } catch (err) {
-        console.error(`Error in fetch: ${err.message}`)
+      } catch(err) {
+        console.error(`Error in fetch: ${err.message}`)                
       }
     }
     fetchPetTypes()
