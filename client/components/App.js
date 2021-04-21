@@ -8,7 +8,6 @@ import { Route, Switch, BrowserRouter } from "react-router-dom"
 
 import Index from "./Index"
 import PetTypeIndex from "./PetTypeIndex"
-import PetIndex from "./PetIndex"
 
 const App = props => {
   useEffect(() => {
@@ -20,7 +19,6 @@ const App = props => {
       <Switch>
         <Route exact path="/" component={Index} />
         <Route exact path="/pets" component={PetTypeIndex} />
-        <Route exact path="/pets/:type" component={PetIndex} />
       </Switch>
     </BrowserRouter>
   )

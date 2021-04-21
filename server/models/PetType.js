@@ -23,21 +23,6 @@ class PetType {
       throw (error)
     }
   }
-
-  static async findPetsByType(type) {
-    const petFile = await import('./Pet.js')
-    const Pet = petFile.default
-    try {
-      const query = "SELECT * FROM adoptable_pets JOIN pet_types ON pet_type_id = pet_types.id WHERE type = $1;"
-      const result = await pool.query(query, [type])
-      const petsData = result.rows
-      const pets = petsData.map(pet => new Pet(pet))
-      return pets
-    } catch (error) {
-      console.log(error)
-      throw (error)
-    }
-  }
 }
 
 export default PetType
