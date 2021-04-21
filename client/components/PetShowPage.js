@@ -5,15 +5,15 @@ const PetShowPage = props => {
   const [pet, setPet] = useState({})
 
   const  getPet = async () => {
-    debugger
+    
     const id = props.match.params.id
     const type = props.match.params.type
 
     try {
-
+     debugger
      const response = await fetch(`/api/v1/pets/${type}/${id}`)
      if(!response.ok) {
-       debugger
+      
        const errorMessage = `${response.status} (${response.statusText})`
        const error = new Error(errorMessage)
        throw(error)
@@ -30,7 +30,8 @@ const PetShowPage = props => {
   useEffect(() => {
     getPet
   }, [])
-
+    
+  debugger
   return (
     <div>
       <img src={`${pet.imgUrl}`}/>
