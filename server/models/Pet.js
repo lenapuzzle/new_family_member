@@ -14,7 +14,7 @@ class Pet {
         this.availableForAdoption = availableForAdoption || available_for_adoption
         this.petTypeId = petTypeId || pet_type_id
     }
-
+     
 }
 
 export default Pet
