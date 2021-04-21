@@ -6,7 +6,6 @@ import "../assets/scss/main.scss"
 
 import { Route, Switch, BrowserRouter } from "react-router-dom"
 
-import Index from "./Index"
 import PetTypeIndex from "./PetTypeIndex"
 
 const App = props => {
@@ -17,7 +16,6 @@ const App = props => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Index} />
         <Route exact path="/pets" component={PetTypeIndex} />
       </Switch>
     </BrowserRouter>
