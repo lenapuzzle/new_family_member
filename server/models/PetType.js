@@ -38,9 +38,6 @@ class PetType {
             throw (error)
         }
     }
-
-    static async findById(Id) {
-    }
-
 }
+
 export default PetType
