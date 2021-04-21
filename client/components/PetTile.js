@@ -1,6 +1,3 @@
-// leaving off here - PetTile untested and not yet built out
-// end of day one (4/19) Ben and Emilia
-
 import React from "react"
 import { Link } from "react-router-dom"
 
@@ -14,7 +11,7 @@ const PetTile = (props) => {
   return (
     <div>
       <h3>{name}</h3>
-      <img src={`${imgUrl}`} />
+      <img src={`${imgUrl}`} alt="Pet to adopt picture"/>
       <p>Age: {age}</p>
       <p>Vaccinated: {vaccinated}</p>
     </div>
