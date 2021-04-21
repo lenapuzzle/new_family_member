@@ -4,14 +4,14 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const PetTile = (props)=>{
-  const {name, age, imgUrl, vaccinationStatus} = props.pet
+const PetTile = (props) => {
+  const { name, age, imgUrl, vaccinationStatus } = props.pet
   let vaccinated = "No"
   if (vaccinationStatus) {
     vaccinated = "Yes"
   }
-    
-  return(
+
+  return (
     <div>
       <h3>{name}</h3>
       <img src={`${imgUrl}`} />
