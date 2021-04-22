@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import ErrorList from "./ErrorList"
+import _ from 'lodash'
 
 const SurrenderForm = props => {
   const [successfulSubmit, setSuccessfulSubmit] = useState(false)
+  const [errors, setErrors] = useState({})
   const [petTypes, setPetTypes] = useState([])
   const [formData, setFormData] = useState({
     name: "",
@@ -10,7 +13,7 @@ const SurrenderForm = props => {
     petName: "",
     petAge: "",
     petType: "",
-    imgURL: "",
+    imgUrl: "",
     vaccinationStatus: ""
   })
 
@@ -24,17 +27,45 @@ const SurrenderForm = props => {
           throw (error)
         }
         const petTypeData = await response.json()
-        setPetTypes(petTypeData.petTypes)
+        const petTypeStrings = petTypeData.petTypes.map(typeObject => {
+          let typeName = typeObject.type.charAt(0).toUpperCase() + typeObject.type.slice(1,-1)
+          return (typeName)
+        }) 
+        let concatedPetTypes = [" "].concat(petTypeStrings)
+        setPetTypes(concatedPetTypes)
       } catch (err) {
         console.error(`Error in fetch: ${err.message}`)
       }
     }
     fetchPetTypes()
-  }, [])
+  }, []) 
+
+  const petTypeOptions = petTypes.map(petType => {
+    return (
+      <option key={petType} value={petType}>
+        {petType}
+      </option>
+    )
+  })  
+
+
+  const vaxStatuses = {
+    '': '',
+    'Vaccinated': true,
+    'Not Vaccinated': false
+  }
+
+  const vaxStatusOptions = Object.keys(vaxStatuses).map(status => {
+    return (
+      <option key={vaxStatuses[status]} value={vaxStatuses[status]}>
+        {status}
+      </option>
+    )
+  })
 
   const postNewPet = async (formPayload) => {
     try {
-      const response = await fetch("/api/v1/pets/new", {
+      const response = await fetch("/api/v1/adoptions/new", {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json'
@@ -52,28 +83,23 @@ const SurrenderForm = props => {
     }
   }
 
-  const petTypeOptions = petTypes.map(petType => {
-    const typeName = petType.type.charAt(0).toUpperCase() + petType.type.slice(1,-1)
-    return (
-      <option key={petType.type} value={petType.id}>
-        {typeName}
-      </option>
-    )
-  })
-
-  const vaxStatuses = {
-    '': '',
-    'Vaccinated': true,
-    'Not Vaccinated': false
+  const validForSubmission = () => {
+    debugger
+    let submitErrors = {}
+    const requiredFields = ["name", "phoneNumber", "email", "petName", "petAge", "petTypeId", "imgUrl", "vaccinationStatus"]
+    const displayedFields = ["Name", "Phone Number", "E-mail", "Pet Name", "Pet Age", "Pet Type", "Image URL", "Vaccination Status"]
+    requiredFields.forEach((field, index) => {
+      if (formData[field].trim() === "") {
+        debugger
+        submitErrors = {
+          ...submitErrors,
+          [displayedFields[index]]: "is blank"
+        }
+      }
+    })
+    setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
   }
-
-  const vaxStatusOptions = Object.keys(vaxStatuses).map(status => {
-    return (
-      <option key={vaxStatuses[status]} value={vaxStatuses[status]}>
-        {status}
-      </option>
-    )
-  })
 
   const handleInputChange = event => {
     setFormData({
@@ -84,27 +110,31 @@ const SurrenderForm = props => {
 
   const onSubmitHandler = event => {
     event.preventDefault()
-    // validation here
-    postNewPet(formData)
+    debugger
+    if(validForSubmission()){
+      postNewPet(formData)
+      clearForm()
+    }
   }
 
   const clearForm = event => {
-    event.preventDefault()
-    useState({
-      name: "",
-      phoneNumber: "",
-      email: "",
-      petName: "",
-      petAge: "",
-      petType: "",
-      imgURL: "",
-      vaccinationStatus: ""
+    setFormData({
+      name: " ",
+      phoneNumber: " ",
+      email: " ",
+      petName: " ",
+      petAge: " ",
+      petType: " ",
+      imgUrl: " ",
+      vaccinationStatus: " "
     })
+    debugger
+    setErrors({})
   }
 
   let successMessage = ""
   if (successfulSubmit) {
-    successMessage = "Your surrender request is in process! Thank you!!!"
+    successMessage = "Your surrender request is in process! Thank you!!"
   }
 
   return (
@@ -112,6 +142,7 @@ const SurrenderForm = props => {
     <h1>Surrender Your Pet Form</h1>
     <h3>Don't be sad, it's for the best :'(</h3>
       <form onSubmit={onSubmitHandler}>
+        <ErrorList errors={errors} />
         <div>
           <label htmlFor="name">Name:</label>
           <input type="text" id="name" name="name" onChange={handleInputChange} value={formData.name} />
@@ -131,26 +162,25 @@ const SurrenderForm = props => {
         <div>
           <label htmlFor="petAge">Pet Age:</label>
           <input type="text" id="petAge" name="petAge" onChange={handleInputChange} value={formData.petAge} />
-          {/* <input type="number" id="petAge" name="petAge" min="0" max="100" value={formData.petAge}></input> */}
         </div>
         <div>
           <label>
             Pet Type:
-              <select name="petType" onChange={handleInputChange} value={formData.petType}>{petTypeOptions}</select>
+              <select name="petTypeId" onChange={handleInputChange} value={formData.petType}>{petTypeOptions}</select>
           </label>
         </div>
         <div>
           <label>
-            Vaccination Status (You can't be too careful these days!):
+            Vaccination Status:
               <select name="vaccinationStatus" onChange={handleInputChange} value={formData.vaccinationStatus}>{vaxStatusOptions}</select>
           </label>
         </div>
         <div>
-          <label htmlFor="imgURL">Pet Image URL:</label>
-          <input type="text" id="imgURL" name="imgURL" onChange={handleInputChange} value={formData.imgURL} />
+          <label htmlFor="imgUrl">Pet Image URL:</label>
+          <input type="text" id="imgUrl" name="imgUrl" onChange={handleInputChange} value={formData.imgUrl} />
         </div>
         <div>
-          <button className="button" onClick={clearForm}>Clear</button>
+          <button className="button" type="button" onClick={clearForm}>Clear</button>
           <input className="button" type="submit" value="Submit" />
         </div>
       </form>

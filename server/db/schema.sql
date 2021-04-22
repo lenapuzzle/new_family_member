@@ -30,7 +30,7 @@ CREATE TABLE surrender_applications (
   adoptable_pet_id INTEGER REFERENCES adoptable_pets
 );
 
-CREATE TABLE adoption_application (
+CREATE TABLE adoption_applications (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   phone_number VARCHAR(255) NOT NULL,
