@@ -9,11 +9,11 @@ const PetTypeTile = (props) => {
     <div>
       <Link to={`/pets/${type}`}>
         <h3>{typeTitle}</h3>
-        <p>{description}</p>
         <div>
-          <img src={`${imgUrl}`} alt="Pet picture"/>
+          <img src={`${imgUrl}`} alt="Pet picture" />
         </div>
       </Link>
+      <p>{description}</p>
     </div>
   )
 }

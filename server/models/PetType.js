@@ -49,7 +49,6 @@ class PetType {
       throw (error)
     }
   }
-  
 }
 
 export default PetType

@@ -36,7 +36,7 @@ class Seeder {
           name: "Captain Jack",
           img_url: "https://images-na.ssl-images-amazon.com/images/I/51yL023V6kL._AC_.jpg",
           age: 2,
-          vaccination_status: true,
+          vaccination_status: false,
           adoption_story: "Likes - Staring out the window; Dislikes - The warlock's curse that transformed him into a cat",
           available_for_adoption: true,
           petType: cat
@@ -45,7 +45,7 @@ class Seeder {
           name: "ChocO",
           img_url: "https://i.pinimg.com/originals/b4/76/ab/b476ab5f38c84ca0cf04a9d23a711a40.jpg",
           age: 5,
-          vaccination_status: true,
+          vaccination_status: false,
           adoption_story: "Likes - Stealing a pizza; Dislikes - Being woken up from long naps",
           available_for_adoption: true,
           petType: cat
@@ -54,7 +54,7 @@ class Seeder {
           name: "Bimbo",
           img_url: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2019%2F08%2Fcorgi-dog-name-POPDOGS0819.jpg",
           age: 4,
-          vaccination_status: true,
+          vaccination_status: false,
           adoption_story: "Likes - laying down in a sunbeam; Dislikes - To be left alone",
           available_for_adoption: true,
           petType: dog
@@ -63,7 +63,7 @@ class Seeder {
           name: "Timmy",
           img_url: "https://i.ebayimg.com/images/g/hXoAAOSwQnpgblRI/s-l300.jpg",
           age: 6,
-          vaccination_status: true,
+          vaccination_status: false,
           adoption_story: "Likes - NOTHING; Dislikes - EVERYTHING AND EVERYONE; Special message - Please, adopt me!",
           available_for_adoption: true,
           petType: dog
