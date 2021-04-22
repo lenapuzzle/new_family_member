@@ -32,17 +32,20 @@ class Pet {
     async type() {
         const typeFile = await import("./PetType.js")
         const PetType = typeFile.default
-
         try {
           const query = "SELECT * FROM pet_types WHERE id = $1;"
           const result = await pool.query(query, [this.petTypeId])
-          const relatedTypeData = result.rows[0]
-          const relatedPetData = new PetType(relatedTypeData)
-
-          return relatedPetData
+          if (result.rows) {
+            const relatedTypeData = result.rows[0]
+            const relatedPetData = new PetType(relatedTypeData)
+            return relatedPetData
+          } else {
+              return false
+          }
           
         } catch (error) {
-
+            console.log(error)
+            throw (error)
         }
     }
 

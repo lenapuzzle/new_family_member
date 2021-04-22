@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 const PetShowPage = props => {
 
   const [pet, setPet] = useState({})
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
 
   const getPet = async () => {
 
@@ -12,19 +12,22 @@ const PetShowPage = props => {
 
     try {
       const response = await fetch(`/api/v1/pets/${type}/${id}`)
+     
       if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw (error)
+        if (response.status == 404) {
+          setShow(false)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw (error)
+        }
       }
       const fetchedData = await response.json()
       setPet(fetchedData.pet)
-
     } catch (error) {
       console.log(`Error in fetch: ${error.message}`)
       throw (error)
     }
-    setShow(true)
   }
 
   useEffect(() => {
