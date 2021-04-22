@@ -12,7 +12,7 @@ const SurrenderForm = props => {
     email: "",
     petName: "",
     petAge: "",
-    petType: "",
+    petTypeId: "",
     imgUrl: "",
     vaccinationStatus: ""
   })
@@ -27,12 +27,12 @@ const SurrenderForm = props => {
           throw (error)
         }
         const petTypeData = await response.json()
-        const petTypeStrings = petTypeData.petTypes.map(typeObject => {
+/*         const petTypeStrings = petTypeData.petTypes.map(typeObject => {
           let typeName = typeObject.type.charAt(0).toUpperCase() + typeObject.type.slice(1,-1)
           return (typeName)
-        }) 
-        let concatedPetTypes = [" "].concat(petTypeStrings)
-        setPetTypes(concatedPetTypes)
+        })  
+        let concatedPetTypes = [" "].concat(petTypeStrings) */
+        setPetTypes(petTypeData.petTypes)
       } catch (err) {
         console.error(`Error in fetch: ${err.message}`)
       }
@@ -41,9 +41,10 @@ const SurrenderForm = props => {
   }, []) 
 
   const petTypeOptions = petTypes.map(petType => {
+    let typeName = petType.type.charAt(0).toUpperCase() + petType.type.slice(1,-1)
     return (
-      <option key={petType} value={petType}>
-        {petType}
+      <option key={petType.id} value={petType.id}>
+        {typeName}
       </option>
     )
   })  
@@ -84,7 +85,6 @@ const SurrenderForm = props => {
   }
 
   const validForSubmission = () => {
-    debugger
     let submitErrors = {}
     const requiredFields = ["name", "phoneNumber", "email", "petName", "petAge", "petTypeId", "imgUrl", "vaccinationStatus"]
     const displayedFields = ["Name", "Phone Number", "E-mail", "Pet Name", "Pet Age", "Pet Type", "Image URL", "Vaccination Status"]
@@ -110,7 +110,6 @@ const SurrenderForm = props => {
 
   const onSubmitHandler = event => {
     event.preventDefault()
-    debugger
     if(validForSubmission()){
       postNewPet(formData)
       clearForm()
@@ -119,17 +118,18 @@ const SurrenderForm = props => {
 
   const clearForm = event => {
     setFormData({
-      name: " ",
-      phoneNumber: " ",
-      email: " ",
-      petName: " ",
-      petAge: " ",
-      petType: " ",
-      imgUrl: " ",
-      vaccinationStatus: " "
+      name: "",
+      phoneNumber: "",
+      email: "",
+      petName: "",
+      petAge: "",
+      petTypeId: "",
+      imgUrl: "",
+      vaccinationStatus: ""
     })
-    debugger
     setErrors({})
+    successMessage = ""
+    setSuccessfulSubmit(false)
   }
 
   let successMessage = ""
@@ -139,7 +139,7 @@ const SurrenderForm = props => {
 
   return (
     <>
-    <h1>Surrender Your Pet Form</h1>
+    <h1>Surrender Your Pet</h1>
     <h3>Don't be sad, it's for the best :'(</h3>
       <form onSubmit={onSubmitHandler}>
         <ErrorList errors={errors} />
@@ -166,7 +166,10 @@ const SurrenderForm = props => {
         <div>
           <label>
             Pet Type:
-              <select name="petTypeId" onChange={handleInputChange} value={formData.petType}>{petTypeOptions}</select>
+              <select name="petTypeId" onChange={handleInputChange} value={formData.petTypeId}>
+                <option value=""></option>
+                {petTypeOptions}
+              </select>
           </label>
         </div>
         <div>
