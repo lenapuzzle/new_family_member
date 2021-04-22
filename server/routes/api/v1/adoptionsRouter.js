@@ -4,10 +4,20 @@ import Pet from "../../../models/Pet.js"
 
 const adoptionsRouter = new express.Router()
 
-adoptionsRouter.post("/new", async (req, res) => {
+adoptionsRouter.post("/", async (req, res) => {
   try {
-    const newPet = new Pet(req.body)
-    const newForm = new SurrenderForm(req.body)
+    const newPet = new Pet({
+      name: req.body.petName,
+      age: req.body.petAge,
+      imgUrl: req.body.imgUrl,
+      vaccinationStatus: req.body.vaccinationStatus,
+      petTypeId: req.body.petTypeId
+    })
+    const newForm = new SurrenderForm({
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email
+    })
     const petId = await newPet.save()
     newForm.adoptablePetId = petId
     const formSaved = await newForm.save()

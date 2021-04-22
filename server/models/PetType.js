@@ -6,8 +6,8 @@ class PetType {
   constructor({ id, type, img_url, imgUrl, description }) {
     this.id = id
     this.type = type
-    this.imgUrl = imgUrl || img_url
-    this.description = description
+    this.imgUrl = imgUrl || img_url 
+    this.description = description 
   }
 
   static async findAll() {

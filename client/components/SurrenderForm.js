@@ -61,7 +61,7 @@ const SurrenderForm = props => {
 
   const postNewPet = async (formPayload) => {
     try {
-      const response = await fetch("/api/v1/adoptions/new", {
+      const response = await fetch("/api/v1/surrender-applications", {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json'
@@ -82,12 +82,11 @@ const SurrenderForm = props => {
   const validForSubmission = () => {
     let submitErrors = {}
     const requiredFields = ["name", "phoneNumber", "email", "petName", "petAge", "petTypeId", "imgUrl", "vaccinationStatus"]
-    const displayedFields = ["Name", "Phone Number", "E-mail", "Pet Name", "Pet Age", "Pet Type", "Image URL", "Vaccination Status"]
     requiredFields.forEach((field, index) => {
       if (formData[field].trim() === "") {
         submitErrors = {
           ...submitErrors,
-          [displayedFields[index]]: "is blank"
+          [_.startCase(field)]: "is blank"
         }
       }
     })
