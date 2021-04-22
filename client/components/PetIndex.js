@@ -29,6 +29,7 @@ const PetIndex = (props) => {
   }, [])
 
   const petTiles = pets.map(pet => {
+    pet.type = type
     return (
       <PetTile
         key={pet.id}
@@ -38,10 +39,12 @@ const PetIndex = (props) => {
   })
 
   return (
+
     <div>
       <h1>Check Out Our Adorable {type}</h1>
       {petTiles}
     </div>
+
   )
 }
 
