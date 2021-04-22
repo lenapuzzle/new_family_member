@@ -14,8 +14,9 @@ const PetShowPage = props => {
       const response = await fetch(`/api/v1/pets/${type}/${id}`)
      
       if (!response.ok) {
-        if (response.status == 404) {
+        if (response.status === 404) {
           setShow(false)
+          return
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
@@ -40,10 +41,8 @@ const PetShowPage = props => {
   }
 
   if (show) {
-    if (pet.name) {
-
       return (
-        <div>
+        <div className="show-page">
           <img src={pet.imgUrl} alt='Image' />
           <h2>{pet.name}</h2>
           <h3>Age: {pet.age}</h3>
@@ -56,9 +55,6 @@ const PetShowPage = props => {
         <p>No pet found</p>
       )
     }
-  } else {
-    return <div></div>
-  }
 }
 
 

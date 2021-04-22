@@ -33,7 +33,7 @@ petTypesRouter.get("/:type/:id", async (req, res) => {
   try {
     const pet = await Pet.findPetById(req.params.id)
     pet.type = await pet.type()
-    if (pet.type) {
+    if (pet.type.type === req.params.type) {
       res.status(200).json({ pet: pet })
     } else {
       res.status(404).json({})
