@@ -27,11 +27,6 @@ const SurrenderForm = props => {
           throw (error)
         }
         const petTypeData = await response.json()
-/*         const petTypeStrings = petTypeData.petTypes.map(typeObject => {
-          let typeName = typeObject.type.charAt(0).toUpperCase() + typeObject.type.slice(1,-1)
-          return (typeName)
-        })  
-        let concatedPetTypes = [" "].concat(petTypeStrings) */
         setPetTypes(petTypeData.petTypes)
       } catch (err) {
         console.error(`Error in fetch: ${err.message}`)
