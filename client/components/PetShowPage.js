@@ -6,7 +6,6 @@ const PetShowPage = props => {
   const [show, setShow] = useState(true)
 
   const getPet = async () => {
-
     const id = props.match.params.id
     const type = props.match.params.type
 
@@ -39,26 +38,21 @@ const PetShowPage = props => {
     vaccinated = "Yes"
   }
 
-  if (show) {
-    if (pet.name) {
-      return (
-        <div className="show-page">
-          <img src={pet.imgUrl} alt='Image' />
-          <h2>{pet.name}</h2>
-          <h3>Age: {pet.age}</h3>
-          <h4>Vaccination Status: {vaccinated}</h4>
-          <h4>{pet.adoptionStory}</h4>
-        </div>
-      )
-    } else {
-      return (
-        <p>No pet found</p>
-      )
-    }
+  if (pet.name) {
+    return (
+      <div className="show-page">
+        <img src={pet.imgUrl} alt='Image' />
+        <h2>{pet.name}</h2>
+        <h3>Age: {pet.age}</h3>
+        <h4>Vaccination Status: {vaccinated}</h4>
+        <h4>{pet.adoptionStory}</h4>
+      </div>
+    )
   } else {
-    return <div></div>
+    return (
+      <p>No pet found</p>
+    )
   }
 }
-
 
 export default PetShowPage
