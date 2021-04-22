@@ -33,8 +33,6 @@ petTypesRouter.get("/:type/:id", async (req, res) => {
     pet.type = await pet.type()
     if (pet.type.type === req.params.type) {
       res.status(200).json({ pet: pet })
-    } else {
-      res.status(404).json({})
     }
   } catch (error) {
     console.log(error)
