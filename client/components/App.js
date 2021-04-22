@@ -8,6 +8,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom"
 
 import PetTypeIndex from "./PetTypeIndex"
 import PetIndex from "./PetIndex"
+import SurrenderForm from "./SurrenderForm"
 
 const App = props => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const App = props => {
       <Switch>
         <Route exact path="/pets" component={PetTypeIndex} />
         <Route exact path="/pets/:type" component={PetIndex} />
+        <Route exact path="/adoptions/new" component={SurrenderForm} />
       </Switch>
     </BrowserRouter>
   )

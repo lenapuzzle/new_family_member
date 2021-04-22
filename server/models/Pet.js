@@ -15,6 +15,15 @@ class Pet {
     this.availableForAdoption = availableForAdoption || available_for_adoption
     this.petTypeId = petTypeId || pet_type_id
   }
+
+  async getTypeId
+  async save() {
+    try {
+      const query = "INSERT INTO adoptable_pets (name, age, imgUrl, vaccinationStatus, adoptionStory, availableForAdoption, petTypeId "
+    } catch {
+
+    }
+  }
    
 }
 
