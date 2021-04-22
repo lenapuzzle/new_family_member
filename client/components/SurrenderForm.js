@@ -85,7 +85,6 @@ const SurrenderForm = props => {
     const displayedFields = ["Name", "Phone Number", "E-mail", "Pet Name", "Pet Age", "Pet Type", "Image URL", "Vaccination Status"]
     requiredFields.forEach((field, index) => {
       if (formData[field].trim() === "") {
-        debugger
         submitErrors = {
           ...submitErrors,
           [displayedFields[index]]: "is blank"
