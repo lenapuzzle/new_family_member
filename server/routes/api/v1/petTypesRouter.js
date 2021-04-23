@@ -1,5 +1,6 @@
 import express from "express"
 
+import AdoptionApplication from '../../../models/AdoptionApplication.js'
 import PetType from '../../../models/PetType.js'
 import Pet from '../../../models/Pet.js'
 
@@ -33,6 +34,19 @@ petTypesRouter.get("/:type/:id", async (req, res) => {
     pet.type = await pet.type()
     if (pet.type.type === req.params.type) {
       res.status(200).json({ pet: pet })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: error })
+  }
+})
+
+petTypesRouter.post("/adoption-form", async (req, res) => {
+  try {
+    console.log('posthit!', req.body)
+    const newAdoptionForm = new AdoptionApplication(req.body)
+    if (await newAdoptionForm.save()) {
+      res.status(201).json({ newAdoptionForm })
     }
   } catch (error) {
     console.log(error)

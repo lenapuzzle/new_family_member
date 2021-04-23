@@ -21,5 +21,4 @@ const PetTile = (props) => {
   )
 }
 
-
 export default PetTile
