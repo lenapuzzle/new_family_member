@@ -20,8 +20,12 @@ petTypesRouter.get("/:type", async (req, res) => {
   try {
     const type = req.params.type
     const petType = await PetType.findPetType(type)
-    const pets = await petType.pets()
-    res.status(200).json({ pets: pets })
+    if (petType){
+      const pets = await petType.pets()
+      res.status(200).json({ pets: pets })
+    } else {
+      res.sendStatus(404)
+    }
   } catch (error) {
     console.log(error)
     res.status(500).json({ error: error })
@@ -31,9 +35,15 @@ petTypesRouter.get("/:type", async (req, res) => {
 petTypesRouter.get("/:type/:id", async (req, res) => {
   try {
     const pet = await Pet.findPetById(req.params.id)
-    pet.type = await pet.type()
-    if (pet.type.type === req.params.type) {
-      res.status(200).json({ pet: pet })
+    if (pet) {
+      pet.type = await pet.type()
+    }
+    if (pet.type){
+      if (pet.type.type === req.params.type) {
+        res.status(200).json({ pet: pet })
+      }
+    } else {
+      res.sendStatus(404)
     }
   } catch (error) {
     console.log(error)
@@ -43,7 +53,6 @@ petTypesRouter.get("/:type/:id", async (req, res) => {
 
 petTypesRouter.post("/adoption-form", async (req, res) => {
   try {
-    console.log('posthit!', req.body)
     const newAdoptionForm = new AdoptionApplication(req.body)
     if (await newAdoptionForm.save()) {
       res.status(201).json({ newAdoptionForm })

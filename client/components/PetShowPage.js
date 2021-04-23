@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
+import { Redirect } from 'react-router-dom'
 
 import AdoptionForm from "./AdoptionForm.js"
 
 const PetShowPage = props => {
   const [pet, setPet] = useState({})
-  const [show, setShow] = useState(true)
+  const [notFound, setNotFound] = useState(false)
   const [displayForm, setDisplayForm] = useState(false)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
@@ -15,9 +16,9 @@ const PetShowPage = props => {
     try {
       const response = await fetch(`/api/v1/pets/${type}/${id}`)
       if (!response.ok) {
-        if (response.status == 404) {
-          setShow(false)
-          return
+        if (response.status == 404) {          
+          setNotFound(true)
+          return null
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
@@ -50,6 +51,10 @@ const PetShowPage = props => {
     setShowSuccessMessage(true)
   }
 
+  if (notFound) {
+    return <Redirect to="/404" />
+  }
+
   if (pet.name) {
     return (
       <div className="show-page">
@@ -65,9 +70,7 @@ const PetShowPage = props => {
       </div>
     )
   } else {
-    return (
-      <p>No pet found</p>
-    )
+    return <></>
   }
 }
 

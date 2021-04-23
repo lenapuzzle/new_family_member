@@ -31,9 +31,13 @@ class Pet {
     try {
       const query = "SELECT * FROM adoptable_pets WHERE id = $1;"
       const result = await pool.query(query, [id])
-      const petData = result.rows[0]
-      const pet = new this(petData)
-      return pet
+      if (result.rowCount) {
+        const petData = result.rows[0]
+        const pet = new this(petData)
+        return pet
+      } else {
+        return false
+      }
     } catch (error) {
       console.log(error)
       throw (error)
