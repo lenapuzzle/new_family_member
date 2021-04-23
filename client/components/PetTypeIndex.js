@@ -34,8 +34,8 @@ const PetTypeIndex = (props) => {
   })
 
   return (
-    <div>
-      <h1> Welcome to our Pet Adoption Page</h1>
+    <div className="pet-type-index">
+      <h1 className="header-text"> Welcome to our Pet Adoption Page</h1>
       {petTypeTiles}
     </div>
   )

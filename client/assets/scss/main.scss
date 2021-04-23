@@ -13,8 +13,71 @@
   tab-size: 4;
 }
 
-.show-page img {
+.pet-index img {
   margin: 0 auto;
   display: block;
-  width: 20rem;
+  width: 40rem;
+  color: black;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+.pet-type-index img {
+  margin: 0 auto;
+  display: block;
+  width: 40rem;
+  color: black;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+.pets {
+  color: blue;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+}
+
+.details {
+  color: darkblue;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+  
+}
+
+.text {
+  color: black;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+}
+
+.url-text {
+  color: black;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+  border: 10px black;
+  border-radius: 2em;
+  border-style: dotted dashed solid double;
+  padding: 35px;
+}
+
+
+.header-text {
+  color: black;
+  text-align: center;
+  font-size: 4rem;
+  font-family: tahoma;
+  font-feature-settings: pcap;
+  text-decoration: underline overline dotted black;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-size: 2.5rem;
+  font-family: tahoma;
+  filter: drop-shadow(0.25rem 0 0.75rem #red);
 }

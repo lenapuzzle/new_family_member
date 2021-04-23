@@ -37,9 +37,8 @@ const PetIndex = (props) => {
   })
 
   return (
-
-    <div>
-      <h1>Check Out Our Adorable {type}</h1>
+    <div className="pet-index">
+      <h1 className="header-text">Check Out Our Adorable {type}</h1>
       {petTiles}
     </div>
 
