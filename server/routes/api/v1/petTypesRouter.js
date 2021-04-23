@@ -43,7 +43,6 @@ petTypesRouter.get("/:type/:id", async (req, res) => {
 
 petTypesRouter.post("/adoption-form", async (req, res) => {
   try {
-    console.log('posthit!', req.body)
     const newAdoptionForm = new AdoptionApplication(req.body)
     if (await newAdoptionForm.save()) {
       res.status(201).json({ newAdoptionForm })
