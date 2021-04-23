@@ -21,7 +21,7 @@ class AdoptionApplication {
     this.email = email
     this.homeStatus = homeStatus || home_status
     this.phoneNumber = phoneNumber || phone_number
-    this.applicationStatus = applicationStatus || application_status
+    this.applicationStatus = applicationStatus || application_status || "pending"
     this.adoptablePetId = adoptablePetId || adoptable_pet_id
   }
 

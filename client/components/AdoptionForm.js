@@ -74,6 +74,7 @@ const AdoptionForm = props => {
       email: "",
       homeStatus: ""
     })
+    setErrors({})
   }
 
   return (
@@ -101,7 +102,7 @@ const AdoptionForm = props => {
         </label>
       </div>
 
-      <div>
+      <div className="button-group">
         <button className="button" onClick={clearForm}>Clear</button>
         <input className="button" type="submit" value="Submit" />
       </div>

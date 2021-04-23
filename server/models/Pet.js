@@ -3,22 +3,22 @@ import pg from "pg"
 const pool = new pg.Pool({ connectionString: "postgres://postgres:password@localhost:5432/new_family_member_development" })
 
 class Pet {
-  constructor({ id, name, age, img_url, imgUrl, vaccinationStatus = false, adoptionStory = "N/A", available_for_adoption = true,
-    availableForAdoption = true, pet_type_id, petTypeId }) {
+  constructor ({ id, name, age, img_url, imgUrl, vaccinationStatus, vaccination_status, adoptionStory, adoption_story, available_for_adoption,
+  availableForAdoption, pet_type_id, petTypeId }) {
     this.id = id
     this.name = name
     this.age = age
     this.imgUrl = imgUrl || img_url
-    this.vaccinationStatus = vaccinationStatus
-    this.adoptionStory = adoptionStory || adoptionStory
-    this.availableForAdoption = availableForAdoption || available_for_adoption
+    this.vaccinationStatus = vaccinationStatus || vaccination_status
+    this.adoptionStory = adoptionStory || adoption_story || "N/A" 
+    this.availableForAdoption = availableForAdoption || available_for_adoption 
     this.petTypeId = petTypeId || pet_type_id
   }
 
   async save() {
     try {
-      const query = "INSERT INTO adoptable_pets (name, age, img_url, vaccination_status, adoption_story, available_for_adoption, pet_type_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;"
-      const result = await pool.query(query, [this.name, this.age, this.imgUrl, this.vaccinationStatus, this.adoptionStory, this.availableForAdoption, this.petTypeId])
+      const query = "INSERT INTO adoptable_pets (name, age, img_url, vaccination_status, adoption_story, pet_type_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;"
+      const result = await pool.query(query, [this.name, this.age, this.imgUrl, this.vaccinationStatus, this.adoptionStory, this.petTypeId])
       this.id = result.rows[0].id
       return this.id
     } catch (error) {

@@ -10,13 +10,18 @@ const PetTile = (props) => {
   }
 
   return (
-    <div>
+    <div className="text">
       <Link to={`/pets/${type}/${id}`}>
-       <h3>{name}</h3>
-        <img src={`${imgUrl}`} alt="Pet to adopt picture"/>
+        <h3 className="pets">{name}</h3>
+        <div className="tile-border">  
+          <div className="pet-info">
+            <p>Age: {age}</p>
+            <p>Vaccinated: {vaccinated}</p>
+          </div>
+          <img src={`${imgUrl}`} alt="Pet to adopt picture" />
+        </div>
       </Link>
-      <p>Age: {age}</p>
-      <p>Vaccinated: {vaccinated}</p>
+    
     </div>
   )
 }

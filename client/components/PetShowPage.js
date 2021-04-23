@@ -38,6 +38,7 @@ const PetShowPage = props => {
   }, [])
 
   let vaccinated = "No"
+ 
   if (pet.vaccinationStatus) {
     vaccinated = "Yes"
   }
@@ -57,17 +58,22 @@ const PetShowPage = props => {
 
   if (pet.name) {
     return (
-      <div className="show-page">
-        <img src={pet.imgUrl} alt='Image' />
-        <h2>{pet.name}</h2>
-        <h3>Age: {pet.age}</h3>
-        <h4>Vaccination Status: {vaccinated}</h4>
-        <h4>{pet.adoptionStory}</h4>
-
-        <button className="button" onClick={showForm}>Adopt Me!</button>
-        {showSuccessMessage ? <h4>Thank you! Your adoption request is in the works!</h4> : null}
-        {displayForm ? <AdoptionForm petId={pet.id} onSubmitSuccess={onSubmitSuccess} /> : null}
-      </div>
+      <>
+        <div className="tile-border cell small-12">
+          <h2>{pet.name}</h2>
+          <div className="cell small-6">
+            <img src={pet.imgUrl} alt='pet image' />
+          </div>
+          <h3>Age: {pet.age}</h3>
+          <h4>Vaccination Status: {vaccinated}</h4>
+          <h4>{pet.adoptionStory}</h4>
+          <button className="button" onClick={showForm}>Adopt Me!</button>
+          <div className="cell">
+            {showSuccessMessage ? <h5>Thank you! Your adoption request is in the works!</h5> : null}
+            {displayForm ? <AdoptionForm petId={pet.id} onSubmitSuccess={onSubmitSuccess} /> : null}
+          </div>
+        </div>
+      </>
     )
   } else {
     return <></>

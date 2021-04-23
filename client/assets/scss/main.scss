@@ -1,5 +1,6 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @include foundation-everything;
 // place global css here
 *,
@@ -13,8 +14,86 @@
   tab-size: 4;
 }
 
-.show-page img {
+body {
+  background-color: lightskyblue;
+  color: black;
+  // font-size: 2.5rem;
+  font-family: tahoma;
+  // filter: drop-shadow(0.25rem 0 0.75rem red);
+  font-family: 'Lobster', cursive;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lobster', cursive !important;
+  color: black;
+}
+
+nav {
+  text-align: center;
+  font-size: xx-large;
+  margin: .5em 0;
+}
+
+.pet-index img {
   margin: 0 auto;
   display: block;
-  width: 20rem;
+  width: 40rem;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+.pet-type-index img {
+  margin: 0 auto;
+  display: block;
+  width: 40rem;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+.pets {
+  color: blue;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+}
+
+.pet-info p {
+  display: inline;
+  font-size: .75em;
+  margin-left: 2em;
+}
+
+.details {
+  color: darkblue;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+  
+}
+
+.text {
+  color: black;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+}
+
+.tile-border {
+  color: black;
+  text-align: center;
+  font-size: 2rem;
+  font-family: tahoma;
+  border: 10px black;
+  border-radius: 2em;
+  border-style: dotted dashed solid double;
+  padding: 35px;
+}
+
+.header-text {
+  color: black;
+  text-align: center;
+  font-size: 4rem;
+  font-family: tahoma;
+  font-feature-settings: pcap;
+  text-decoration: underline overline dotted black;
 }
