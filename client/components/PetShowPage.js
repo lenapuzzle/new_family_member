@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 const PetShowPage = props => {
 
   const [pet, setPet] = useState({})
-  const [show, setShow] = useState(true)
 
   const getPet = async () => {
     const id = props.match.params.id
@@ -13,7 +12,6 @@ const PetShowPage = props => {
       const response = await fetch(`/api/v1/pets/${type}/${id}`)
       if (!response.ok) {
         if (response.status == 404) {
-          setShow(false)
           return
         } else {
           const errorMessage = `${response.status} (${response.statusText})`

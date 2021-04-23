@@ -7,7 +7,9 @@ import SurrenderForm from "./SurrenderForm"
 
 const NavBar = props => {
   const [petTypes, setPetTypes] = useState([])
-  useEffect(() => {
+
+  const typeName = props.match.params.type
+   
     const fetchPetTypes = async () => {
       try {
         const response = await fetch("/api/v1/pets")
@@ -22,30 +24,25 @@ const NavBar = props => {
         console.error(`Error in fetch: ${err.message}`)
       }
     }
-    fetchPetTypes()
-  }, [])
 
-  const petTypeLinks = petTypes.map(petType => {
-    let typeName = petType.type.charAt(0).toUpperCase() + petType.type.slice(1)
-    return (
-      <div>
-        <Link to={`/pets/${petType.type}`}>Adorable {typeName}</Link>
-      </div>
-    )
+    useEffect(() => {
+    fetchPetTypes()
+    },[typeName])
+    
+    const petTypeLinks = petTypes.map(petType => {
+      let typeName = petType.type[0].toUpperCase() + petType.type.slice(1)
+      return <Link to={`/pets/${petType.type}`} key={petType.id}> Adorable {typeName}</Link>
   })
+  
 
   return (
     <div className="row column">
       <div className="navbar">
         <Link to="/pets">All Pets</Link>
       </div>
-      {/* <div className="navbar">
-        <Link to="/pets/cats">Precious Cats</Link>
-      </div>
-      <div className="navbar">
-        <Link to="/pets/dogs">Adorable Dogs</Link>
-      </div> */}
+      <div>
       {petTypeLinks}
+      </div>
       <div className="navbar">
         <Link to="/adoptions/new">Sad to say Goodbye</Link>
       </div>

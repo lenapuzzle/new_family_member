@@ -25,8 +25,9 @@ const PetIndex = (props) => {
         console.error(`Error in fetch: ${err.message}`)
       }
     }
+    
     fetchPets()
-  }, [])
+  }, [type])
 
   const petTiles = pets.map(pet => {
     pet.type = type
