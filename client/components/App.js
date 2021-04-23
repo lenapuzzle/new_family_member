@@ -13,10 +13,12 @@ const App = props => {
   }, [])
 
   return (
-    <div>
-      <BrowserRouter>
-        <Route path="/" component={NavBar} />
-      </BrowserRouter>
+    <div className="grid-container">
+      <div className="cell small-12">
+        <BrowserRouter>
+          <Route path="/" component={NavBar} />
+        </BrowserRouter>
+      </div>
     </div>
   )
 }

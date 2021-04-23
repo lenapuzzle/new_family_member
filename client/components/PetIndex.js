@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import _ from 'lodash'
 
 import PetTile from './PetTile'
 
@@ -17,7 +18,6 @@ const PetIndex = (props) => {
           throw (error)
         }
         const petData = await response.json()
-        // if the team does not nest the data we can remove the .petTypes reference
         setPets(petData.pets)
       } catch (err) {
         console.error(`Error in fetch: ${err.message}`)
@@ -38,10 +38,9 @@ const PetIndex = (props) => {
 
   return (
     <div className="pet-index">
-      <h1 className="header-text">Check Out Our Adorable {type}</h1>
+      <h1 className="header-text">Check Out Our Adorable {_.capitalize(type)}</h1>
       {petTiles}
     </div>
-
   )
 }
 
