@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
 
-const PetShowPage = props => {
+import AdoptionForm from "./AdoptionForm.js"
 
+const PetShowPage = props => {
   const [pet, setPet] = useState({})
   const [show, setShow] = useState(true)
+  const [displayForm, setDisplayForm] = useState(false)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
   const getPet = async () => {
     const id = props.match.params.id
@@ -39,6 +42,15 @@ const PetShowPage = props => {
     vaccinated = "Yes"
   }
 
+  const showForm = event => {
+    setDisplayForm(true)
+  }
+
+  const onSubmitSuccess = event => {
+    setDisplayForm(false)
+    setShowSuccessMessage(true)
+  }
+
   if (pet.name) {
     return (
       <div className="show-page">
@@ -47,6 +59,10 @@ const PetShowPage = props => {
         <h3>Age: {pet.age}</h3>
         <h4>Vaccination Status: {vaccinated}</h4>
         <h4>{pet.adoptionStory}</h4>
+
+        <button className="button" onClick={showForm}>Adopt Me!</button>
+        {showSuccessMessage ? <h4>Thank you! Your adoption request is in the works!</h4> : null}
+        {displayForm ? <AdoptionForm petId={pet.id} onSubmitSuccess={onSubmitSuccess} /> : null}
       </div>
     )
   } else {

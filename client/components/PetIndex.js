@@ -5,12 +5,10 @@ import PetTile from './PetTile'
 
 const PetIndex = (props) => {
   const [pets, setPets] = useState([])
-
   const type = props.match.params.type
 
   useEffect(() => {
     const fetchPets = async () => {
-
       try {
         const response = await fetch(`/api/v1/pets/${type}`)
         if (!response.ok) {
