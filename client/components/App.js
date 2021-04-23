@@ -5,11 +5,8 @@ import $ from "jquery"
 import "../assets/scss/main.scss"
 
 import { Route, Switch, BrowserRouter } from "react-router-dom"
-
-import PetTypeIndex from "./PetTypeIndex"
-import PetIndex from "./PetIndex"
-import SurrenderForm from "./SurrenderForm"
 import PetShowPage from "./PetShowPage"
+import NavBar from "./NavBar"
 
 const App = props => {
   useEffect(() => {
@@ -18,12 +15,8 @@ const App = props => {
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/pets" component={PetTypeIndex} />
-        <Route exact path="/pets/:type" component={PetIndex} />
-        <Route exact path="/adoptions/new" component={SurrenderForm} />
-        <Route exact path="/pets/:type/:id" component={PetShowPage} />
-      </Switch>
+      <Route path="/" component={NavBar} />
+      <Route exact path="/pets/:type/:id" component={PetShowPage} />
     </BrowserRouter>
   )
 }
