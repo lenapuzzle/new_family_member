@@ -4,6 +4,7 @@ import { Switch, Route, Link } from "react-router-dom"
 import PetTypeIndex from "./PetTypeIndex"
 import PetIndex from "./PetIndex"
 import SurrenderForm from "./SurrenderForm"
+import PetShowPage from "./PetShowPage"
 
 const NavBar = props => {
   const [petTypes, setPetTypes] = useState([])
@@ -31,24 +32,24 @@ const NavBar = props => {
     
     const petTypeLinks = petTypes.map(petType => {
       let typeName = petType.type[0].toUpperCase() + petType.type.slice(1)
-      return <Link to={`/pets/${petType.type}`} key={petType.id}> Adorable {typeName}</Link>
+      return <><Link to={`/pets/${petType.type}`} key={petType.id}> Adorable {typeName}</Link> |</>
   })
-  
 
   return (
     <div className="row column">
       <div className="navbar">
-        <Link to="/pets">All Pets</Link>
       </div>
       <nav>
+        <Link to="/pets">Home</Link> |
         {petTypeLinks}
+        <Link to="/adoptions/new">List a pet for adoption</Link>   
       </nav>
       <div className="navbar">
-        <Link to="/adoptions/new">Sad to say Goodbye</Link>
       </div>
       <Switch>
         <Route exact path="/pets" component={PetTypeIndex} />
         <Route exact path="/pets/:type" component={PetIndex} />
+        <Route exact path="/pets/:type/:id" component={PetShowPage} />
         <Route exact path="/adoptions/new" component={SurrenderForm} />
       </Switch>
     </div>
