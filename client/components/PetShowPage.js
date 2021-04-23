@@ -34,6 +34,7 @@ const PetShowPage = props => {
   }, [])
 
   let vaccinated = "No"
+ 
   if (pet.vaccinationStatus) {
     vaccinated = "Yes"
   }

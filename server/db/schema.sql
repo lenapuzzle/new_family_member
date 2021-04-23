@@ -17,7 +17,7 @@ CREATE TABLE adoptable_pets (
   age INTEGER,
   vaccination_status BOOLEAN DEFAULT false,
   adoption_story TEXT NOT NULL,
-  available_for_adoption BOOLEAN NOT NULL,
+  available_for_adoption BOOLEAN DEFAULT true,
   pet_type_id INTEGER REFERENCES pet_types
 );
 

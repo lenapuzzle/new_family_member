@@ -3,7 +3,7 @@ import pg from "pg"
 const pool = new pg.Pool({ connectionString: "postgres://postgres:password@localhost:5432/new_family_member_development" })
 
 class SurrenderForm {
-  constructor({ id, name, phoneNumber, email, adoptablePetId, application_status = "pending", applicationStatus = "pending" }) {
+  constructor({ id, name, phoneNumber, email, adoptablePetId, application_status, applicationStatus }) {
     this.id = id
     this.name = name
     this.phoneNumber = phoneNumber
