@@ -8,7 +8,6 @@ import PetShowPage from "./PetShowPage"
 import SurrenderForm from "./SurrenderForm"
 
 const NavBar = (props) => {
-
   return (
     <div>
       <nav>
