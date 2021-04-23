@@ -9,7 +9,7 @@ class SurrenderForm {
     this.phoneNumber = phoneNumber
     this.email = email
     this.adoptablePetId = adoptablePetId
-    this.applicationStatus = applicationStatus || application_status
+    this.applicationStatus = applicationStatus || application_status || "pending"
   }
 
   async save() {
