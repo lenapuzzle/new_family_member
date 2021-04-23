@@ -9,10 +9,10 @@ const PetTile = (props) => {
   }
 
   return (
-    <div>
-      <h3>{name}</h3>
-      <img src={`${imgUrl}`} alt="Pet to adopt picture"/>
-      <p>Age: {age}</p>
+    <div className="text">
+      <h3 className="pets">{name}</h3>
+      <img src={`${imgUrl}`} alt="Pet to adopt picture" className="url-text"/>
+      <p>Age: {age}</p> 
       <p>Vaccinated: {vaccinated}</p>
     </div>
   )
