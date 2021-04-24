@@ -4,7 +4,7 @@ import "foundation-sites"
 import $ from "jquery"
 import "../assets/scss/main.scss"
 
-import { Route, Switch, BrowserRouter } from "react-router-dom"
+import { Route, BrowserRouter } from "react-router-dom"
 import PetShowPage from "./PetShowPage"
 import NavBar from "./NavBar"
 
